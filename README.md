@@ -1,4 +1,5 @@
 # Cargo NDK for Android projects
+[![CI](https://github.com/0xh3rman/cargo-ndk-android-gradle/actions/workflows/ci.yml/badge.svg)](https://github.com/0xh3rman/cargo-ndk-android-gradle/actions/workflows/ci.yml)
 
 Allows building Rust code via `cargo ndk` command in android projects.
 
