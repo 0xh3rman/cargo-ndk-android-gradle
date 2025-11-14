@@ -238,12 +238,14 @@ The property applies globally and can also be overridden per `buildType`.
 Artifacts are uploaded to [GitHub Packages](https://github.com/0xh3rman/cargo-ndk-android-gradle/packages)
 via the `Release` workflow. To publish a new version:
 
-1. Update `plugin/build.gradle` and `build.gradle` with the desired version.
-2. Push the changes and open a PR (or merge to your release branch).
-3. In GitHub → Actions → `Release`, trigger the workflow dispatch on the
-   desired ref. The workflow runs tests and executes
-   `./gradlew :plugin:publishAllPublicationsToGitHubPackagesRepository` with the
-   repository-provided `GITHUB_TOKEN`.
+1. Update `plugin/build.gradle` (and related docs) with the desired version.
+2. Merge the change into your release branch and create a git tag following the
+   `v*` pattern (e.g. `git tag v0.4.1 && git push origin v0.4.1`). The workflow
+   automatically runs on tag pushes.
+3. Alternatively, trigger the workflow manually from GitHub → Actions →
+   `Release` (`Run workflow`) to publish from any ref.
 
-Consumers need `read:packages` access and must authenticate (as shown in the
-configuration snippet above) to resolve the dependence.
+The workflow runs tests and executes
+`./gradlew :plugin:publishAllPublicationsToGitHubPackagesRepository` using the
+repository-provided `GITHUB_TOKEN`. Consumers need `read:packages` access and
+must authenticate (see the configuration snippet above) to resolve the plugin.
